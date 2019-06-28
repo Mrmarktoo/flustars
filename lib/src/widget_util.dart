@@ -83,17 +83,29 @@ class WidgetUtil {
         : ((url != null && url.isNotEmpty)
             ? Image.network(url)
             : Image.asset(localUrl, package: package));
-    img.image
-        .resolve(new ImageConfiguration())
-        .addListener(new ImageStreamListener(
-          (ImageInfo info, bool _) {
+
+//    img.image
+//        .resolve(new ImageConfiguration())
+//        .addListener(new ImageStreamListener(
+//          (ImageInfo info, bool _) {
+//            completer.complete(Rect.fromLTWH(0, 0, info.image.width.toDouble(),
+//                info.image.height.toDouble()));
+//          },
+//          onError: (dynamic exception, StackTrace stackTrace) {
+//            completer.completeError(exception, stackTrace);
+//          },
+//        ));
+
+
+    img.image.resolve(new ImageConfiguration()).addListener(
+          (ImageInfo info, bool synchronousCall) {
             completer.complete(Rect.fromLTWH(0, 0, info.image.width.toDouble(),
                 info.image.height.toDouble()));
-          },
-          onError: (dynamic exception, StackTrace stackTrace) {
-            completer.completeError(exception, stackTrace);
-          },
-        ));
+      },
+      onError: (dynamic exception, StackTrace stackTrace) {
+        completer.completeError(exception, stackTrace);
+      },
+    );
     return completer.future;
   }
 
@@ -116,17 +128,27 @@ class WidgetUtil {
         : ((url != null && url.isNotEmpty)
             ? Image.network(url)
             : Image.asset(localUrl, package: package));
-    img.image
-        .resolve(new ImageConfiguration())
-        .addListener(new ImageStreamListener(
-          (ImageInfo info, bool _) {
-            completer.complete(Rect.fromLTWH(0, 0, info.image.width.toDouble(),
-                info.image.height.toDouble()));
-          },
-          onError: (dynamic exception, StackTrace stackTrace) {
-            completer.completeError(exception, stackTrace);
-          },
-        ));
+//    img.image
+//        .resolve(new ImageConfiguration())
+//        .addListener(new ImageStreamListener(
+//          (ImageInfo info, bool _) {
+//            completer.complete(Rect.fromLTWH(0, 0, info.image.width.toDouble(),
+//                info.image.height.toDouble()));
+//          },
+//          onError: (dynamic exception, StackTrace stackTrace) {
+//            completer.completeError(exception, stackTrace);
+//          },
+//        ));
+
+    img.image.resolve(new ImageConfiguration()).addListener(
+      (ImageInfo info, bool synchronousCall) {
+        completer.complete(Rect.fromLTWH(
+            0, 0, info.image.width.toDouble(), info.image.height.toDouble()));
+      },
+      onError: (dynamic exception, StackTrace stackTrace) {
+        completer.completeError(exception, stackTrace);
+      },
+    );
 
     return completer.future;
   }
